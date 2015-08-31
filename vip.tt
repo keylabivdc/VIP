@@ -1,0 +1,261 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN">
+<html>
+<head><title>Virus Identification Pipeline (VIP) Report</title>
+<meta charset="utf-8">
+<style type="text/css">
+
+ @media screen {
+  div.summary {
+    width: 18em;
+    position:fixed;
+    top: 3em;
+    margin:1em 0 0 1em;
+    height: auto;
+    overflow-y: scroll;
+    bottom: 2.3em;
+  }
+  
+  div.main {
+    display:block;
+    position:absolute;
+    overflow:auto;
+    height:auto;
+    width:auto;
+    top:4.5em;
+    bottom:2.3em;
+    left:18em;
+    right:0;
+    border-left: 1px solid #CCC;
+    padding:0 0 0 1em;
+    background-color: white;
+    z-index:1;
+  }
+  
+  div.header {
+    background-color: #EEE;
+    border:0;
+    margin:0;
+    padding: 0.5em;
+    font-size: 200%;
+    font-weight: bold;
+    position:fixed;
+    width:100%;
+    top:0;
+    left:0;
+    z-index:2;
+  }
+
+  div.footer {
+    background-color: #EEE;
+    border:0;
+    margin:0;
+	padding:0.5em;
+    height: 1.3em;
+	overflow:hidden;
+    font-size: 100%;
+    font-weight: bold;
+    position:fixed;
+    bottom:0;
+    width:100%;
+    z-index:2;
+  }
+  
+  img.indented {
+    margin-left: 3em;
+  }
+ }
+ 
+ @media print {
+	img {
+		max-width:100% !important;
+		page-break-inside: avoid;
+	}
+	h2, h3 {
+		page-break-after: avoid;
+	}
+	div.header {
+      background-color: #FFF;
+    }
+	
+ }
+ 
+ body {    
+  font-family: sans-serif;   
+  color: #000;   
+  background-color: #FFF;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  }
+  
+  div.header {
+  border:0;
+  margin:0;
+  padding: 0.5em;
+  font-size: 200%;
+  font-weight: bold;
+  width:100%;
+  }    
+  
+  #header_title {
+  display:inline-block;
+  float:left;
+  clear:left;
+  }
+  #header_filename {
+  display:inline-block;
+  float:right;
+  clear:right;
+  font-size: 50%;
+  margin-right:2em;
+  text-align: right;
+  }
+
+  div.header h3 {
+  font-size: 50%;
+  margin-bottom: 0;
+  }
+  
+  div.summary ul {
+  padding-left:0;
+  list-style-type:none;
+  }
+  
+  div.summary ul li img {
+  margin-bottom:-0.5em;
+  margin-top:0.5em;
+  }
+	  
+  div.main {
+  background-color: white;
+  }
+      
+  div.module {
+  padding-bottom:1.5em;
+  padding-top:1.5em;
+  }
+	  
+  div.footer {
+  background-color: #EEE;
+  border:0;
+  margin:0;
+  padding: 0.5em;
+  font-size: 100%;
+  font-weight: bold;
+  width:100%;
+  }
+
+
+  a {
+  color: #000080;
+  }
+
+  a:hover {
+  color: #800000;
+  }
+      
+  h2 {
+  color: #800000;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  clear:left;
+  }
+
+  table { 
+  margin-left: 0.5em;
+  text-align: center;
+  }
+  
+  th { 
+  text-align: center;
+  background-color: #000080;
+  color: #FFF;
+  padding: 0.4em;
+  }      
+  
+  td { 
+  font-family: monospace; 
+  text-align: left;
+  background-color: #EEE;
+  color: #000;
+  padding: 0.4em;
+  }
+
+  img {
+  padding-top: 0;
+  margin-top: 0;
+  border-top: 0;
+  }
+
+  
+  p {
+  padding-top: 0;
+  margin-top: 0;
+  }
+  
+</style>
+
+</head>
+<body>
+<div class="header">
+<div id="header_title">Virus Identification Pipeline (VIP) Report [% mode %] mode</div>
+<div id="header_filename">
+File subject to VIP : [% report_name %]<br />
+The process cost [% total_time %] seconds
+</div>
+</div>
+<div class="summary">
+<h2>Quick Link</h2>
+<ul>
+  [% FOREACH line IN lines %]
+    [% IF pics_covplot.item(line.1) %]
+      <li><a href="#[% line.1 %]">[% line.1 %]</a></li>
+    [% END %]
+  [% END %]
+</ul>
+</div>
+<div class="main">
+<div class="module"><h2>Reads Distribution</h2>
+<table><tr>
+ <td><img src=reads_distribution.[% report_name %].png border=0></td>
+ <td><img src=virus_distribution.[% report_name %].png border=0></td>
+</tr></table>
+<div class="module"><h2>Summary Report</h2>
+<table>
+<tr>
+  [% FOREACH header IN h %]
+    <th>[% header %]</th>
+  [% END %]
+</tr>
+[% FOREACH line IN lines %]
+  <tr>
+    <td>[% line.0 %]</td>
+    <td>
+      [% IF pics_covplot.item(line.1) %]
+        <a href="#[% line.1 %]">[% line.1 %]</a>
+      [% ELSE %]
+        [% line.1 %]
+      [% END %]
+    </td>
+    <td>[% line.2 %]</td>
+    <td>[% line.3 %]</td>
+    <td>[% line.4 %]</td>
+    <td>[% line.5 %]</td>
+    <td>[% line.6 %]</td>
+  </tr>
+[% END %]  
+</table>
+
+[% FOREACH line IN lines %]
+  [% IF pics_covplot.item(line.1) or pics_covplot.item(line.1) %] 
+    <div class="module"><h2 id="[% line.1 %]">[% line.1 %]</h2>
+      <p><img class="indented" src="[% pics_phygo.item(line.1) %]" alt="[% line.1 %]"></p>
+      <p><img class="indented" src="[% pics_covplot.item(line.1) %]" alt="[% line.1 %]"></p>
+    </div>
+  [% END %]
+[% END %]
+
+
+</div>
+</div><div class="footer">Produced by <a href="https://github.com/yang-li/Virus-Identification-Pipeline/">Virus Identification Pipeline</a> (version 0.1.0) Contact: liyang@ivdc.chinacdc.cn</div>
+</body></html>
