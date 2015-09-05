@@ -4,7 +4,7 @@ Quick Start Guide
 
 Virus Identification Pipeline (VIP) was developed for metagenomic identification of viral pathogen. VIP performs the following steps to achieve its goal: (i) map and filter out background-related reads, (ii) extensive classification of reads on the basis of nucleotide and remote amino acid homology, (iii) multiple k-mer based de novo assembly and phylogenetic analysis to provide evolutionary insight.
 
-There results of VIP were displayed in HTML format. A demo result was available at http://yang.hukaa.com/1/
+The results of VIP were displayed in HTML format. A demo result was available at http://yang.hukaa.com/1/
 
 # Introduction
 
