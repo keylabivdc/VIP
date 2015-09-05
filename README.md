@@ -8,7 +8,7 @@ There results of VIP were displayed in HTML format. A demo result was available 
 
 # Introduction
 
-VIP was developed by Department of Core Facility, National Institute for Viral Disease Control and Prevention (IVDC),  China center for Disease control and Prevention (China CDC)
+VIP was developed by Department of Core Facility, National Institute for Viral Disease Control and Prevention (IVDC),  China Center for Disease Control and Prevention (China CDC)
 
 Virus Identification Pipeline (VIP) is a one-touch computational pipeline for virus identification and discovery from metagenomic NGS data, rigorously tested across multiple clinical sample types representing a variety of infectious diseases. VIP has been tested on Ubuntu 14.04 and Biolinux 8. Other Linux distribution would be supported but not tested.
 
