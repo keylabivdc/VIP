@@ -371,7 +371,7 @@ fi
 cd "$REF_PATH/SENSE/NUCL"
 tar zxf "$VIP_SENSE_NUCL"
 cat */*.fna > all_virus.fna
-vip_db_format.pl all_virus.fna
+sed "s/\(>gi|[0-9]*|\).*/\1/g" all_virus.fna > all_virus.fna.formatted
 
 
 if [ ! -f "vipdb_sense_nucl.1.bt2" ] 
