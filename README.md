@@ -16,15 +16,11 @@ Virus Identification Pipeline (VIP) is a one-touch computational pipeline for vi
 
 The steps to install VIP on a machine are as follows:
 
-1.	Install all dependencies
-	./dependency_installer.sh
-	./db_installer.sh
-2.	Generating the config file, details as following.
+1.	> git clone https://github.com/keylabivdc/VIP
+2.	#Install all dependencies
+	> sudo dependency_installer.sh
+	> sudo db_installer.sh
 3.	Run VIP
-
-# Config files
-
-The config file includes parameters for VIP to run. Each parameter can be modified based on your situation. Generally the default parameters are suitable for most cases.
 
 # Usage
 
@@ -37,6 +33,7 @@ The config file includes parameters for VIP to run. Each parameter can be modifi
 	Run VIP with verification mode
 		VIP.sh -i <NGSfile> -v
 
+	(Note: The config file includes parameters for VIP to run. Each parameter can be modified based on your situation. Generally the default parameters are suitable for most cases.)
 # Helps
 
 Any questions can be sent to liyang@ivdc.chinacdc.cn
