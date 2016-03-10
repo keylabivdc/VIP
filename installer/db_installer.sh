@@ -363,14 +363,15 @@ if [ ! -f "$REF_PATH/SENSE/NUCL/$VIP_SENSE_NUCL" ]
 then
 	echo -e "$(date)\t$0\tDownloading files for "$VIP_SENSE_NUCL""
 	cd "$REF_PATH/SENSE/NUCL"
-	download_file "$REF_PATH/SENSE/NUCL" "$VIP_SENSE_NUCL_DIR" "$VIP_SENSE_NUCL"
+#	download_file "$REF_PATH/SENSE/NUCL" "$VIP_SENSE_NUCL_DIR" "$VIP_SENSE_NUCL"
+	esearch -db nuccore -query "Viruses[Organism] NOT cellular organisms[ORGN] NOT wgs[PROP] NOT gbdiv syn[prop] AND (srcdb_refseq[PROP] OR nuccore genome samespecies[Filter])" | efetch -format fasta > all_virus.fasta
 else
 	echo -e "$(date)\t$0\t$VIP_SENSE_NUCL already present. If you want to reinstall the file, please delete or backup the file and re-run the program."
 fi
 
-cd "$REF_PATH/SENSE/NUCL"
-tar zxf "$VIP_SENSE_NUCL"
-cat */*.fna > all_virus.fna
+# cd "$REF_PATH/SENSE/NUCL"
+# tar zxf "$VIP_SENSE_NUCL"
+# cat */*.fna > all_virus.fna
 sed "s/\(>gi|[0-9]*|\).*/\1/g" all_virus.fna > all_virus.fna.formatted
 
 
