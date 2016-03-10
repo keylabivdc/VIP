@@ -16,12 +16,16 @@ Virus Identification Pipeline (VIP) is a one-touch computational pipeline for vi
 
 The steps to install VIP on a machine are as follows:
 
-1.	> git clone https://github.com/keylabivdc/VIP
+	> git clone https://github.com/keylabivdc/VIP
+	
 	> cd VIP
+	
 	> cd installer
+	
 	> sudo dependency_installer.sh
+	
 	> sudo db_installer.sh
-3.	Run VIP
+	
 
 # Usage
 
