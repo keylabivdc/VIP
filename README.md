@@ -22,9 +22,9 @@ The steps to install VIP on a machine are as follows:
 	
 	> cd installer
 	
-	> sudo dependency_installer.sh
+	> sudo ./dependency_installer.sh
 	
-	> sudo db_installer.sh
+	> sudo ./db_installer.sh
 	
 
 # Usage

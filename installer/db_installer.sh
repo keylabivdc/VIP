@@ -155,8 +155,11 @@ then
 	echo -e "$(date)\t$0\tStarting creation of taxonomy SQLite databases..."
 	grep "scientific name" names.dmp > names_scientificname.dmp
 	echo -e "$(date)\t$0\tStarting creation of taxonomy SQLite databases..."
-	create_taxonomy_db.py
+	cp create_taxonomy_db.py $REF_PATH
+	cd $REF_PATH
+	./create_taxonomy_db.py
 	echo -e "$(date)\t$0\tCompleted creation of taxonomy SQLite databases."
+	cd $REF_PATH
 else
 	echo -e "$(date)\t$scriptname\tNecessary files not found. Exiting..."
 	exit
@@ -294,7 +297,7 @@ then
 	tar zxf "$VIR_NONFLU"
 	cat Influenza_All.nt NONFLU_All.nt > vip_fast.fa
 	echo -e "$(date)\t$0\tStarting getting a valid GI from the collections..."
-	vip_db_format.pl vip_fast.fa
+	sed "s/\(>gi|[0-9]*|\).*/\1/g" vip_fast.fa > vip_fast.fa.formatted
 	echo -e "$(date)\t$0\tStarting creation of bowtie2-indexed databases..."
 	bowtie2-build vip_fast.fa.formatted vipdb_fast
 	echo -e "$(date)\t$0\tCompleted creation of Virus databases for FAST mode."
