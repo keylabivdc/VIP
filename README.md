@@ -22,9 +22,9 @@ The steps to install VIP on a machine are as follows:
 	
 	> cd installer
 	
-	> sudo ./dependency_installer.sh
+	> sudo sh dependency_installer.sh
 	
-	> sudo ./db_installer.sh
+	> sudo sh db_installer.sh
 	
 
 # Usage
@@ -43,4 +43,9 @@ The steps to install VIP on a machine are as follows:
 
 Any questions can be sent to liyang@ivdc.chinacdc.cn
 
+# Notes
+
+We are working on the installation-scripts for CentOS. 
+It should be noted that ETE module required X server for imaging. Not a good news for server...
+In addition, we are also working on applying common workflow language (CWL).
 
