@@ -64,7 +64,7 @@ Command Line Switches:
 
 Usage:
 
-$0 -r ./
+$0 -r [PATH]/[TO]/[VIPDB]
 
 USAGE
 	exit
@@ -230,8 +230,8 @@ fi
 ###############################
 #	BAC DB
 ###############################
-BAC_DIR="https://greenhouse.lanl.gov/gottcha/FASTA/"
-BAC_DB="GOTTCHA_BACTERIA_c3514_k24_u24_xHUMAN3x.species.fna.gz"
+BAC_DIR="ftp://ftp.lanl.gov/public/genome/gottcha/GOTTCHA_database_v20150825/"
+BAC_DB="GOTTCHA_BACTERIA_c4937_k24_u30.species.tar.gz"
 
 if [ ! -d "$REF_PATH/BAC/" ]
 then
@@ -297,7 +297,7 @@ then
 	tar zxf "$VIR_NONFLU"
 	cat Influenza_All.nt NONFLU_All.nt > vip_fast.fa
 	echo -e "$(date)\t$0\tStarting getting a valid GI from the collections..."
-	sed "s/\(>gi|[0-9]*|\).*/\1/g" vip_fast.fa > vip_fast.fa.formatted
+	vip_db_format.pl vip_fast.fa
 	echo -e "$(date)\t$0\tStarting creation of bowtie2-indexed databases..."
 	bowtie2-build vip_fast.fa.formatted vipdb_fast
 	echo -e "$(date)\t$0\tCompleted creation of Virus databases for FAST mode."
@@ -367,7 +367,7 @@ then
 	echo -e "$(date)\t$0\tDownloading files for "$VIP_SENSE_NUCL""
 	cd "$REF_PATH/SENSE/NUCL"
 #	download_file "$REF_PATH/SENSE/NUCL" "$VIP_SENSE_NUCL_DIR" "$VIP_SENSE_NUCL"
-	esearch -db nuccore -query "Viruses[Organism] NOT cellular organisms[ORGN] NOT wgs[PROP] NOT gbdiv syn[prop] AND (srcdb_refseq[PROP] OR nuccore genome samespecies[Filter])" | efetch -format fasta > all_virus.fasta
+	esearch -db nuccore -query "Viruses[Organism] NOT cellular organisms[ORGN] NOT wgs[PROP] NOT gbdiv syn[prop] AND (srcdb_refseq[PROP] OR nuccore genome samespecies[Filter])" | efetch -format fasta > all_virus.fna
 else
 	echo -e "$(date)\t$0\t$VIP_SENSE_NUCL already present. If you want to reinstall the file, please delete or backup the file and re-run the program."
 fi
