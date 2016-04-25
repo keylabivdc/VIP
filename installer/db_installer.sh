@@ -386,3 +386,9 @@ else
 	echo -e "$(date)\t$0\tvipdb_sense_nucl existed. all database has been created."
 fi
 
+###############################
+#	VIP tt
+###############################
+
+cd $REF_PATH
+wget https://github.com/keylabivdc/VIP/blob/master/vip.tt
