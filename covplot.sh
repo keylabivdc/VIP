@@ -82,7 +82,7 @@ then
 			cd ..
 		else
 			echo -e "$(date)\t$0\tNo valid nucl reference based on temp.$genus.gilist"
-			sed '/$genus/d' temp.all.$NGS.uniq.genus > temp.all.$NGS.uniq.genus.tmp
+			sed "/$genus/d" temp.all.$NGS.uniq.genus > temp.all.$NGS.uniq.genus.tmp
 			mv temp.all.$NGS.uniq.genus.tmp temp.all.$NGS.uniq.genus
 		fi
 	done		
@@ -134,7 +134,7 @@ then
 			cd ..
 		else
 			echo -e "$(date)\t$0\tNo valid nucl reference based on temp.$genus.gilist"
-			sed '/$genus/d' temp.all.$NGS.uniq.genus > temp.all.$NGS.uniq.genus.tmp
+			sed "/$genus/d" temp.all.$NGS.uniq.genus > temp.all.$NGS.uniq.genus.tmp
 			mv temp.all.$NGS.uniq.genus.tmp temp.all.$NGS.uniq.genus
 		fi			
 	done
