@@ -16,7 +16,7 @@
 ### Update  : 2015-07-05
 #
 
-VIP_version="0.1.1"
+VIP_version="0.1.0"
 
 if [ $# -lt 1 ]
 then
@@ -624,8 +624,8 @@ then
 	##bar chart (modified when version 0.4)	
 	
 	distributionPlot.py temp.top5virus.$inputfile $inputfile virus
-	echo -e "htmlGen.pl taxi.$inputfile.table $inputfile $run_mode $DIFF_VIP $VIP_TT_DIR"
-	htmlGen.pl taxi.$inputfile.table $inputfile $run_mode $DIFF_VIP $VIP_TT_DIR
+	echo -e "htmlGen.pl taxi.$inputfile.table $inputfile $run_mode $DIFF_VIP $VIP_DIR"
+	htmlGen.pl taxi.$inputfile.table $inputfile $run_mode $DIFF_VIP $VIP_DIR
 elif [ -f "$inputfile.nohost.nobac.sense_nucl.match.sam.addseq.all.annotated" ] && [ -f "$inputfile.nohost.nobac.sense_nucl.unmatch.fa.prot.m8.addseq.all.annotated" ]
 then
 ##updated part for 0.0.2

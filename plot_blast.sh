@@ -50,7 +50,7 @@ echo -e "$(date)\t$0\t%Coverage = $coverage_percent"
 #depth计算
 echo -e "$(date)\t$0\tDepth calculation"
 let "totaldepth = `awk '{print$2}' $blastresult.mapped | awk '{sum += $1} END {print sum}'`"
-depth_avg=$(echo "scale=4;$totaldepth / $reflength * 100"|bc)
+depth_avg=$(echo "scale=4;$totaldepth / $reflength"|bc)
 echo -e "$(date)\t$0\tAverage depth of coverage (x) = $depth_avg" 
 #reads count for blast
 echo -e "$(date)\t$0\tReads count for blast"

@@ -47,19 +47,20 @@ then
 	
 	#while read genus
 	for genus in `cat temp.all.$NGS.uniq.genus` 
-		do
-			echo -e "$(date)\t$0\tParsing genus: $genus"
-			echo -e "$(date)\t$0\tCreating temp file for $genus"
-			mkdir temp.$genus.$NGS
-			START1=$(date +%s)
-			##将所有reads放到对应的genus文件下并合并
-			egrep "$genus" temp.$bowtie_file.nospace | awk '{print">"$1"\n"$10}' > ./temp.$genus.$NGS/temp.$genus.bowtie.fa
-			egrep "$genus" temp.$rapsearch_file.nospace | awk '{print">"$1"\n"$13}' > ./temp.$genus.$NGS/temp.$genus.rapsearch.fa
-			##获得前200名gi
-			#egrep "$genus" temp.$bowtie_file.nospace | awk '{print$3}' | sed 's/gi|//g' | sed 's/|//g' | sort | uniq -c | sort -k1,1 -r -g | awk '{print$2}' | head -n 200 > ./temp.$genus.$NGS/temp.$genus.gilist  
-			egrep "$genus" temp.$bowtie_file.nospace | awk '{print$3}' | sed 's/gi|//g' | sed 's/|//g' | awk '{a[$1]++}END{for (i in a) print i" "a[i]}' | sort -r -k2,2 -n > ./temp.$genus.$NGS/temp.$genus.gi_time
-			awk '{print$1}' ./temp.$genus.$NGS/temp.$genus.gi_time | head -n 100 > ./temp.$genus.$NGS/temp.$genus.gilist  	
-			##获得前100名gi对应的fasta格式
+	do
+		echo -e "$(date)\t$0\tParsing genus: $genus"
+		echo -e "$(date)\t$0\tCreating temp file for $genus"
+		mkdir temp.$genus.$NGS
+		START1=$(date +%s)
+		##将所有reads放到对应的genus文件下并合并
+		egrep "$genus" temp.$bowtie_file.nospace | awk '{print">"$1"\n"$10}' > ./temp.$genus.$NGS/temp.$genus.bowtie.fa
+		egrep "$genus" temp.$rapsearch_file.nospace | awk '{print">"$1"\n"$13}' > ./temp.$genus.$NGS/temp.$genus.rapsearch.fa
+		##获得前200名gi
+		#egrep "$genus" temp.$bowtie_file.nospace | awk '{print$3}' | sed 's/gi|//g' | sed 's/|//g' | sort | uniq -c | sort -k1,1 -r -g | awk '{print$2}' | head -n 200 > ./temp.$genus.$NGS/temp.$genus.gilist  
+		egrep "$genus" temp.$bowtie_file.nospace | awk '{print$3}' | sed 's/gi|//g' | sed 's/|//g' | awk '{a[$1]++}END{for (i in a) print i" "a[i]}' | sort -r -k2,2 -n > ./temp.$genus.$NGS/temp.$genus.gi_time
+		awk '{print$1}' ./temp.$genus.$NGS/temp.$genus.gi_time | head -n 100 > ./temp.$genus.$NGS/temp.$genus.gilist  				
+		if [ -s ./temp.$genus.$NGS/temp.$genus.gilist ]
+		then
 			echo -e "$(date)\t$0\tDownloading fasta records based on temp.$genus.gilist"
 			#perl $address/get_genbankfasta.pl -i ./temp.$genus.$NGS/temp.$genus.gilist > ./temp.$genus.$NGS/temp.$genus.gilist.fa
 			get_genbankfasta.pl -i ./temp.$genus.$NGS/temp.$genus.gilist > ./temp.$genus.$NGS/temp.$genus.gilist.fa
@@ -77,19 +78,13 @@ then
 			echo -e "$(date)\t$0\tPlot blast output against reference"
 			#sh $address/plot_blast.sh temp.$genus.$NGS.blastn temp.$genus.gilist.fa.blastdb.fasta $genus $NGS
 			plot_blast.sh temp.$genus.$NGS.blastn temp.$genus.gilist.fa.blastdb.fasta $genus $NGS
-			###
-			#phygo:
-			#1,de novo assembly
-			#2,get the longest contig
-			#3,get the refseq for the genus
-			#4,mafft the refseq genus
-			#5,addfragments the contig into the backbone
-			#6,RNJ and ETE 
-			###1
 			phygo.sh temp.$genus.fa $genus temp.$genus.gilist.fa.blastdb.fasta $platform $NGS $kmer_start $kmer_end $kmer_step
 			cd ..
-			#exit
-			##
+		else
+			echo -e "$(date)\t$0\tNo valid nucl reference based on temp.$genus.gilist"
+			sed '/$genus/d' temp.all.$NGS.uniq.genus > temp.all.$NGS.uniq.genus.tmp
+			mv temp.all.$NGS.uniq.genus.tmp temp.all.$NGS.uniq.genus
+		fi
 	done		
 		#done < temp.all.$NGS.uniq.genus
 elif [ "$mode" = "fast" ]
@@ -100,23 +95,22 @@ then
 	awk -F "\t" '{print$4}' $bowtie_file.tempsorted | sort -u -k1,1 > temp.$bowtie_file.uniq.genus
 	cat temp.$bowtie_file.uniq.genus | sort -u -k1,1 | sed 's/ /_/g' | sed /^[[:space:]]*$/d > temp.all.$NGS.uniq.genus
 	echo -e "$(date)\t$0\tdone creating temp.all.$NGS.uniq.genus"
-	
-	#while read genus
-	#	do
 	for genus in `cat temp.all.$NGS.uniq.genus`
-		do
-			echo -e "$(date)\t$0\tParsing genus: $genus"
-			echo -e "$(date)\t$0\tCreating temp file for $genus"
-			mkdir temp.$genus.$NGS
-			START1=$(date +%s)
-			##将所有reads放到对应的genus文件下并合并
-			egrep "$genus" temp.$bowtie_file.nospace | awk '{print">"$1"\n"$10}' > ./temp.$genus.$NGS/temp.$genus.bowtie.fa
-			#egrep "$genus" temp.$rapsearch_file.nospace | awk '{print">"$1"\n"$13}' > ./temp.$genus.$NGS/temp.$genus.rapsearch.fa
-			##获得前200名gi
-			#egrep "$genus" temp.$bowtie_file.nospace | awk '{print$3}' | sed 's/gi|//g' | sed 's/|//g' | sort | uniq -c | sort -k1,1 -r -g | awk '{print$2}' | head -n 200 > ./temp.$genus.$NGS/temp.$genus.gilist  
-			egrep "$genus" temp.$bowtie_file.nospace | awk '{print$3}' | sed 's/gi|//g' | sed 's/|//g' | awk '{a[$1]++}END{for (i in a) print i" "a[i]}' | sort -r -k2,2 -n > ./temp.$genus.$NGS/temp.$genus.gi_time
-			awk '{print$1}' ./temp.$genus.$NGS/temp.$genus.gi_time | head -n 100 > ./temp.$genus.$NGS/temp.$genus.gilist  	
-			##获得前100名gi对应的fasta格式
+	do
+		echo -e "$(date)\t$0\tParsing genus: $genus"
+		echo -e "$(date)\t$0\tCreating temp file for $genus"
+		mkdir temp.$genus.$NGS
+		START1=$(date +%s)
+		##将所有reads放到对应的genus文件下并合并
+		egrep "$genus" temp.$bowtie_file.nospace | awk '{print">"$1"\n"$10}' > ./temp.$genus.$NGS/temp.$genus.bowtie.fa
+		#egrep "$genus" temp.$rapsearch_file.nospace | awk '{print">"$1"\n"$13}' > ./temp.$genus.$NGS/temp.$genus.rapsearch.fa
+		##获得前200名gi
+		#egrep "$genus" temp.$bowtie_file.nospace | awk '{print$3}' | sed 's/gi|//g' | sed 's/|//g' | sort | uniq -c | sort -k1,1 -r -g | awk '{print$2}' | head -n 200 > ./temp.$genus.$NGS/temp.$genus.gilist  
+		egrep "$genus" temp.$bowtie_file.nospace | awk '{print$3}' | sed 's/gi|//g' | sed 's/|//g' | awk '{a[$1]++}END{for (i in a) print i" "a[i]}' | sort -r -k2,2 -n > ./temp.$genus.$NGS/temp.$genus.gi_time
+		awk '{print$1}' ./temp.$genus.$NGS/temp.$genus.gi_time | head -n 100 > ./temp.$genus.$NGS/temp.$genus.gilist  	
+		##获得前100名gi对应的fasta格式
+		if [ -s ./temp.$genus.$NGS/temp.$genus.gilist ]
+		then
 			echo -e "$(date)\t$0\tDownloading fasta records based on temp.$genus.gilist"
 			#perl $address/get_genbankfasta.pl -i ./temp.$genus.$NGS/temp.$genus.gilist > ./temp.$genus.$NGS/temp.$genus.gilist.fa
 			get_genbankfasta.pl -i ./temp.$genus.$NGS/temp.$genus.gilist > ./temp.$genus.$NGS/temp.$genus.gilist.fa
@@ -138,9 +132,10 @@ then
 			#phygo.sh temp.$genus.fa $genus temp.$genus.gilist.fa.blastdb.fasta $platform $NGS
 			phygo.sh temp.$genus.fa $genus temp.$genus.gilist.fa.blastdb.fasta $platform $NGS $kmer_start $kmer_end $kmer_step			
 			cd ..
-			#exit
-			##
+		else
+			echo -e "$(date)\t$0\tNo valid nucl reference based on temp.$genus.gilist"
+			sed '/$genus/d' temp.all.$NGS.uniq.genus > temp.all.$NGS.uniq.genus.tmp
+			mv temp.all.$NGS.uniq.genus.tmp temp.all.$NGS.uniq.genus
+		fi			
 	done
-	#done < temp.all.$NGS.uniq.genus
 fi
-
