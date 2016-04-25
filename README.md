@@ -6,6 +6,7 @@ Virus Identification Pipeline (VIP) was developed for metagenomic identification
 
 The results of VIP were displayed in HTML format. A demo result was available at http://yang.hukaa.com/1/
 
+Please feel free to join the mailing list as well to ask any questions about VIP: https://groups.google.com/forum/#!forum/virus-identification-pipeline
 # Introduction
 
 VIP was developed by Department of Core Facility, National Institute for Viral Disease Control and Prevention (IVDC),  China Center for Disease Control and Prevention (China CDC)
