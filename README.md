@@ -53,6 +53,6 @@ In addition, we are also working on applying common workflow language (CWL).
 # VIP developer notes
 
 Version 0.1.1 26/Apr/2016
-1, Fix errors of urls for downloading database.
-2, Fix an error while calculating the average depth.
-3, Add a script to parse the database.
+1, Fix errors of urls for downloading database. <br>
+2, Fix an error while calculating the average depth. <br>
+3, Add a script to parse the database. <br>
