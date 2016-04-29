@@ -155,9 +155,9 @@ then
 	echo -e "$(date)\t$0\tStarting creation of taxonomy SQLite databases..."
 	grep "scientific name" names.dmp > names_scientificname.dmp
 	echo -e "$(date)\t$0\tStarting creation of taxonomy SQLite databases..."
-	cp create_taxonomy_db.py $REF_PATH
-	cd $REF_PATH
-	./create_taxonomy_db.py
+	# cp create_taxonomy_db.py $REF_PATH
+	# cd $REF_PATH
+	create_taxonomy_db.py
 	echo -e "$(date)\t$0\tCompleted creation of taxonomy SQLite databases."
 	cd $REF_PATH
 else

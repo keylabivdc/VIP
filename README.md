@@ -23,6 +23,8 @@ The steps to install VIP on a machine are as follows:
 	
 	> cd installer
 	
+	> chmod 755 *
+	
 	> sudo sh dependency_installer.sh
 	
 	> sudo sh db_installer.sh -r [PATH]/[TO]/[DATABASE]

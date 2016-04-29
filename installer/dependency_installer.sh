@@ -37,10 +37,15 @@ cwd=$(pwd)
 cd $VIP_BIN
 sudo git clone https://github.com/keylabivdc/VIP
 cd VIP
+chmod 755 *
+chmod 755 */*
 cp * $VIP_BIN
+mv edirect $VIP_PATH
+cd $VIP_BIN
 rm -rf VIP
 cd $cwd
 echo "PATH=\$PATH:$VIP_PATH" >> ~/.bashrc
+echo "PATH=\$PATH:$VIP_PATH/edirect" >> ~/.bashrc
 echo "PATH=\$PATH:$VIP_BIN" >> ~/.bashrc
 
 ### install & update Ubuntu packages
@@ -68,19 +73,8 @@ sudo apt-get install mafft
 sudo apt-get install python-numpy python-qt4 python-lxml
 curl "https://bootstrap.pypa.io/get-pip.py" > get-pip.py
 sudo python get-pip.py
+rm -f get-pip.py
 sudo -H pip install --upgrade ete2
 
 ### install pandas
 sudo -H pip install --upgrade pandas
-
-### install edirect
-cd $cwd
-perl -MNet::FTP -e \
-    '$ftp = new Net::FTP("ftp.ncbi.nlm.nih.gov", Passive => 1); $ftp->login;
-     $ftp->binary; $ftp->get("/entrez/entrezdirect/edirect.zip");'
-unzip -u -q edirect.zip
-rm edirect.zip
-export PATH=$PATH:$cwd/edirect
-./edirect/setup.sh
-cd $cwd
-sudo chmod 755 $VIP_BIN/*
