@@ -379,8 +379,8 @@ echo -e "$(date)\t$0\tVirus Identification Pipeline (VIP) begins"
 BEGIN_VIP=$(date +%s)
 mkdir $inputfile.report
 curdir=`pwd`
-echo -e "$(date)\t$0\tFree pagecache"
-sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'
+# echo -e "$(date)\t$0\tFree pagecache"
+# sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'
 
 if [ "$preprocess" = "Y" ]
 then
@@ -404,8 +404,8 @@ else
 	sleep 5
 fi
 
-echo -e "$(date)\t$0\tFree pagecache"
-sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'
+# echo -e "$(date)\t$0\tFree pagecache"
+# sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'
 #####HUMAN MAPPING########
 if [ -f "$inputfile.nohost.fastq" ]
 then
@@ -440,8 +440,8 @@ else
 	fi
 fi
 
-echo -e "$(date)\t$0\tFree pagecache"
-sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'
+# echo -e "$(date)\t$0\tFree pagecache"
+# sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'
 
 ######MODE##############
 if [ "$run_mode" = "fast" ]
@@ -528,8 +528,8 @@ then
 fi
 
 
-echo -e "$(date)\t$0\tFree pagecache"
-sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'
+# echo -e "$(date)\t$0\tFree pagecache"
+# sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'
 
 ######Taxonmoy classfication##############
 
@@ -546,8 +546,8 @@ then
 	get_fulllength.sh $inputfile.nohost.nobac.fastq $inputfile.nohost.nobac.sense_nucl.match.sam sam
 fi
 
-echo -e "$(date)\t$0\tFree pagecache"
-sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'
+# echo -e "$(date)\t$0\tFree pagecache"
+# sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'
 
 if [ -f "$inputfile.nohost.fast_nucl.match.sam.addseq" ] 
 then
@@ -579,8 +579,8 @@ then
 	echo -e "$(date)\t$0\tFile missing: $inputfile.nohost.fast_nucl.match.sam.addseq"
 fi
 
-echo -e "$(date)\t$0\tFree pagecache"
-sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'
+# echo -e "$(date)\t$0\tFree pagecache"
+# sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'
 
 ##phygo and covplot##
 
