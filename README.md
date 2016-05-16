@@ -34,7 +34,12 @@ The steps to install VIP on a machine are as follows:
 
 	Create default config file.
 		VIP.sh -z -i <NGSfile> -p <454/iontor/illumina> -f <fastq/fasta/bam/sam> -r <reference_path>
-
+		
+		Please do not include any path information for the NGS file.
+		
+		For example, Good for VIP.sh -z -i test.fq 
+					 Bad for VIP.sh -z -i [PATH]/test.fq 
+		
 	Run VIP with the config file:
 		VIP.sh -c <configfile> -i <NGSfile>
 
