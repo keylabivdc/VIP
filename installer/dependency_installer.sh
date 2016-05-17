@@ -63,6 +63,9 @@ sudo cpanm Template
 ### install Bowtie2
 sudo apt-get install bowtie2
 
+### install oasis velvet
+sudo apt-get install velvet
+
 ### install picard-tools
 sudo apt-get install picard-tools
 
