@@ -200,7 +200,7 @@ else
 	echo -e "$(date)\t$0\t$HG38_DNA already present. If you want to reinstall the file, please delete or backup the file and re-run the program."
 fi
 cd "$REF_PATH/HOST"
-sudo gzip -d -k "$HG38_DNA"
+sudo gzip -d -k $HG38_DNA
 sudo sh -c 'cat hs_ref_GRCh38.*.fa > human.dna.fa'
 
 # for rna
