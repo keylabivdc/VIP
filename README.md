@@ -49,7 +49,7 @@ The steps to install VIP on a machine are as follows:
 	(Note: The config file includes parameters for VIP to run. Each parameter can be modified based on your situation. Generally the default parameters are suitable for most cases.)
 # Helps
 
-Any questions can be sent to lyang@capitalbio.com
+Any questions can be sent to yang_li89@outlook.com
 
 (Previous email address was eliminated. If I did not reply your emails, please send me with above address)
 
