@@ -13,6 +13,20 @@ VIP was developed by Department of Core Facility, National Institute for Viral D
 
 Virus Identification Pipeline (VIP) is a one-touch computational pipeline for virus identification and discovery from metagenomic NGS data, rigorously tested across multiple clinical sample types representing a variety of infectious diseases. VIP has been tested on Ubuntu 14.04 and Biolinux 8. Other Linux distribution would be supported but not tested. Currently we are developing a user-friendly graphic interface (GUI).
 
+# VIP-docker version
+
+People worldwide paid attention to VIP used very different operating system, from MAC OS to various Linux system, such as Centos, Ubuntu, Redhat. It is a tough task to meet every system. Thanks to docker which can run at every system. So I chose docker as a container for VIP. If you are not familiar with VIP, basically you can take it as a very light vitual machine. Please follow the steps to get the vip-docker.
+
+First of all, please make sure docker is well installed in your system. You can also check the manual for useful tips.
+
+	docker pull yang4li/vip-docker
+	
+	docker run -itd -v /etc/localtime:/etc/localtime:ro -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY yang4li/vip-docker /bin/bash
+	
+	#You will see a string which is the container ID.
+	
+	docker exec -it [Container ID] bash
+
 # Installation
 
 The steps to install VIP on a machine are as follows:
