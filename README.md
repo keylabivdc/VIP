@@ -15,7 +15,7 @@ Virus Identification Pipeline (VIP) is a one-touch computational pipeline for vi
 
 # VIP-docker version
 
-People worldwide paid attention to VIP used very different operating system, from MAC OS to various Linux system, such as Centos, Ubuntu, Redhat. It is a tough task to meet every system. Thanks to docker which can run at every system. So I chose docker as a container for VIP. If you are not familiar with VIP, basically you can take it as a very light vitual machine. Please follow the steps to get the vip-docker.
+People worldwide paid attention to VIP used very different operating system, from MAC OS to various Linux system, such as Centos, Ubuntu, Redhat. It is a tough task to meet every system. Thanks to docker which can run at every system. So I chose docker as a container for VIP. If you are not familiar with docker, basically you can take it as a very light vitual machine. Please follow the steps to get the vip-docker.
 
 First of all, please make sure docker is well installed in your system. You can also check the manual for useful tips.
 
