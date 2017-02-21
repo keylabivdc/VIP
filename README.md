@@ -78,6 +78,10 @@ In addition, we are also working on applying common workflow language (CWL).
 Li, Y. et al. VIP: an integrated pipeline for metagenomics of virus identification and discovery. Sci. Rep. 6, 23774; doi: 10.1038/srep23774 (2016).
 
 # VIP developer notes
+Version 0.2.0 19/Feb/2017 <br>
+1, Add the mode switch. <br>
+2, Accesion number could be well processed for taxonomy. <br>
+3, VIP-docker was released. <br>
 
 Version 0.1.1 26/Apr/2016 <br>
 1, Fix errors of urls for downloading database. <br>
